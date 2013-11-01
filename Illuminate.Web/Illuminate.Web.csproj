@@ -226,7 +226,6 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\application\fileupload.controller.js" />
     <Content Include="Scripts\application\createcontent.controller.js" />
     <Content Include="Scripts\application\newsfeed.controller.js" />
     <Content Include="Scripts\application\userprofile.controller.js" />
@@ -256,7 +255,6 @@
     <Content Include="Scripts\tab.js" />
     <Content Include="Scripts\tooltip.js" />
     <Content Include="Scripts\transition.js" />
-    <None Include="Views\Content\FileUploadTest.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
