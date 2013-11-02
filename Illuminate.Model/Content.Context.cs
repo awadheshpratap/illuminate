@@ -26,5 +26,6 @@ namespace Illuminate.Model
         }
     
         public DbSet<Content> Contents { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

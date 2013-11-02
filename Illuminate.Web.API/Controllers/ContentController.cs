@@ -1,5 +1,4 @@
-﻿using Illuminate.Web.API.MockDataGenerator;
-using Illuminate.Model;
+﻿using Illuminate.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,10 +32,21 @@ namespace Illuminate.Web.API.Controllers
             return content;
         }
 
+        // GET api/content/mitrukv
+        public IEnumerable<Content> GetContentByUserId(string userId)
+        {
+            if (userId == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+            var content = _contentRepository.GetWithRawSql("Select * from Content where Author = '{0}'", userId);
+
+            return content;
+        }
+
         // POST contribute/content/{contentId}
         public HttpResponseMessage PostContent([FromBody] Content content, int? contentId)
         {
-            System.Diagnostics.Debugger.Break();
             if (contentId.HasValue == false)
             {
                 _contentRepository.Insert(content);

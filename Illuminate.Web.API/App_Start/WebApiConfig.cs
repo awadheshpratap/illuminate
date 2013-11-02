@@ -23,6 +23,7 @@ namespace Illuminate.Web.API
                 routeTemplate: "consume/{controller}/{contentId}", defaults: new { contentId = RouteParameter.Optional }
             );
 
+            
             //Ignoring the XML serialization, to allow the Chrome to use the JSON format by default
             var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
             config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
