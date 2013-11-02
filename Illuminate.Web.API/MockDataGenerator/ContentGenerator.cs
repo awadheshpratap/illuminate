@@ -8,10 +8,10 @@ namespace Illuminate.Web.API.MockDataGenerator
 {
     public class ContentGenerator
     {
-        public static Dictionary<int, Content> GenerateContent()
+        public static Dictionary<int, ContentLegacy> GenerateContent()
         {
-            Content content = Builder<Content>.CreateNew().With(x => x.Id = IdGenerator.Next()).Build();
-            Dictionary<int, Content> contentDict = new Dictionary<int, Content>();
+            ContentLegacy content = Builder<ContentLegacy>.CreateNew().With(x => x.Id = IdGenerator.Next()).Build();
+            Dictionary<int, ContentLegacy> contentDict = new Dictionary<int, ContentLegacy>();
             contentDict[content.Id] = content;
             return contentDict;
         }

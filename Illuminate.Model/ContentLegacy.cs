@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Illuminate.Model
 {
-    public class Content
+    public class ContentLegacy
     {
         public int Id { get; set; }
         public string Title { get; set; }
