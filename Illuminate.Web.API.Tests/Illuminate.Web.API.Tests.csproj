@@ -100,6 +100,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ContentControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
   </ItemGroup>
@@ -110,6 +111,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Illuminate.Model\Illuminate.Model.csproj">
+      <Project>{942a7ab3-7ee1-460b-9b05-ef978ff65101}</Project>
+      <Name>Illuminate.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Illuminate.Web.API\Illuminate.Web.API.csproj">
       <Project>{26F5EC7D-1755-4165-A5B6-B5BCE01D4D91}</Project>
       <Name>Illuminate.Web.API</Name>

@@ -6,52 +6,51 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Illuminate.Model.Repository;
+using System.Web.Mvc;
 
 namespace Illuminate.Web.API.Controllers
 {
     public class ContentController : ApiController
     {
-        private static Dictionary<int, Content> _contentCache = ContentGenerator.GenerateContent();
+        private readonly ContentRepository _contentRepository = new ContentRepository();
 
         // GET api/content
-        public IEnumerable<Content> Get()
+        public IEnumerable<Content> GetAllContents()
         {
-            return _contentCache.Values;
+            return _contentRepository.Get();
         }
 
         // GET api/content/5
-        public Content Get(int id)
+        public Content GetContentById(int contentId)
         {
-            if (_contentCache.ContainsKey(id))
+            var content = _contentRepository.GetByID(contentId);
+
+            if (content == null)
             {
-                return _contentCache[id];
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            return content;
+        }
+
+        // POST contribute/content/{contentId}
+        public HttpResponseMessage PostContent([FromBody] Content content, int? contentId)
+        {
+            System.Diagnostics.Debugger.Break();
+            if (contentId.HasValue == false)
+            {
+                _contentRepository.Insert(content);
             }
             else
             {
-                return null;
+                _contentRepository.Update(content);
             }
-        }
 
-        // POST api/content
-        public void Post([FromBody] Content content)
-        {
-            if (content.Id <= 0)
-            {
-                content.Id = IdGenerator.Next();
-            }
-            _contentCache[content.Id] = content;
-        }
 
-        // PUT api/content/5
-        public void Put(int id, [FromBody]Content content)
-        {
-            _contentCache[id] = content;
-        }
-
-        // DELETE api/content/5
-        public void Delete(int id)
-        {
-            _contentCache.Remove(id);
+            var response = Request.CreateResponse<Content>(HttpStatusCode.Created, content);
+            string uri = Url.Link("ConsumeContent", new { contentId = content.Id });
+            response.Headers.Location = new Uri(uri);
+            return response;
         }
     }
 }

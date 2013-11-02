@@ -19,7 +19,7 @@ namespace Illuminate.Web.API
             //consume/content -- List all content
             //consume/content/3 -- details of content with id = 3
             config.Routes.MapHttpRoute(
-                name: "ConsumeListContent",
+                name: "ConsumeContent",
                 routeTemplate: "consume/{controller}/{contentId}", defaults: new { contentId = RouteParameter.Optional }
             );
 
