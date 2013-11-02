@@ -67,7 +67,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Content.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContentLegacy.cs" />
     <Compile Include="IdGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

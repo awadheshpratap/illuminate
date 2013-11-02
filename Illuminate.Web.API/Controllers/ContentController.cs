@@ -11,16 +11,16 @@ namespace Illuminate.Web.API.Controllers
 {
     public class ContentController : ApiController
     {
-        private static Dictionary<int, ContentLegacy> _contentCache = ContentGenerator.GenerateContent();
+        private static Dictionary<int, Content> _contentCache = ContentGenerator.GenerateContent();
 
         // GET api/content
-        public IEnumerable<ContentLegacy> Get()
+        public IEnumerable<Content> Get()
         {
             return _contentCache.Values;
         }
 
         // GET api/content/5
-        public ContentLegacy Get(int id)
+        public Content Get(int id)
         {
             if (_contentCache.ContainsKey(id))
             {
@@ -33,7 +33,7 @@ namespace Illuminate.Web.API.Controllers
         }
 
         // POST api/content
-        public void Post([FromBody] ContentLegacy content)
+        public void Post([FromBody] Content content)
         {
             if (content.Id <= 0)
             {
@@ -43,7 +43,7 @@ namespace Illuminate.Web.API.Controllers
         }
 
         // PUT api/content/5
-        public void Put(int id, [FromBody]ContentLegacy content)
+        public void Put(int id, [FromBody]Content content)
         {
             _contentCache[id] = content;
         }
