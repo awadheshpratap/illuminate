@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+        <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../css/starter-template.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 70px;
+        padding-bottom: 40px;
+      }
+      .sidebar-nav {
+        padding: 10px 0;
+      }
+    </style>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  
+    </head>
+    <body>
+      <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Illuminate</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+              <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Content <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Trending Topics</a></li>
+                <li><a href="#">Top Contributors</a></li>
+                <li><a href="#">Channels</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">My content</li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Create <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="~/Content/CreateContent.cshtml">Webcast</a></li>
+                @*@Html.ActionLink("Webcast", "Content", "Content")*@
+              </ul>
+            </li>
+            <li><a href="#about">Users</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+   <div class="container-fluid">
+    <div class="row-fluid row">
+       <div class="span2">
+         <!--Sidebar content-->
+          
+        <div class="well sidebar-nav-fixed">
+            <ul class="nav nav-list">
+              <li class="nav-header"></li>
+              <li class="active"><a href="#">News Feed</a></li>
+              <li><a href="#">My Activities</a></li>
+            </ul>
+        </div>
+       </div>
+     </div>
+    </div>
+
+    <div id="body">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </div>
+@*    <footer>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p>&copy; @DateTime.Now.Year - Illuminate</p>
+            </div>
+        </div>
+    </footer>*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("scripts", required: false)
+
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../Scripts/jquery-1.7.1.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+
+
+    </body>
+</html>
