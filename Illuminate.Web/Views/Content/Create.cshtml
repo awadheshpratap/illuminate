@@ -22,7 +22,42 @@
               <h3 class="panel-title">Your new webcast</h3>
             </div>
             <div class="panel-body">
-              Panel content
+                <div data-ng-controller="CreateContentController">
+   
+                  <label>Area</label>
+                  [ <a href="" ng-click="addArea()">add</a> ]
+                  <div>
+                    <select ng-model="area">
+                      <option>Java</option>
+                      <option>.net</option>
+                      <option>Automation</option>
+                      <option>Agile</option>
+                    </select>
+                       [ <a href="" ng-click="removeArea(area)">X</a> ]
+                    </div> <br />
+                    <label>Topic</label>
+                  [ <a href="" ng-click="addTopic()">add</a> ]
+                  <div>
+                    <select ng-model="area">
+                      <option>.net Runtime</option>
+                      <option>Generics</option>
+                      <option>LINQ</option>
+                      <option>Task Parallel Library</option>
+                    </select>
+                     [ <a href="" ng-click="removeTopic(topic)">X</a> ]
+                  </div> <br />
+                  <label>Content Description</label><br>
+                  <textarea ng-model="description" required></textarea> <br /> <br /> <!-- TODO: replace br by a proper grid layout-->
+                  <div file-browser>
+                    <input type="file" name="upload-file">
+                  </div>
+                   
+                  <br><br>
+    
+                  <hr/>
+                  Debug View:
+                  <pre>user={{user | json}}</pre>
+                </div>
             </div>
           </div>
        </div>
