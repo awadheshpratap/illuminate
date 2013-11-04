@@ -11,7 +11,7 @@ namespace Illuminate.Web.Controllers
         //
         // GET: /Content/
 
-        public ActionResult Index()
+        public ActionResult Create()
         {
             return View();
         }
