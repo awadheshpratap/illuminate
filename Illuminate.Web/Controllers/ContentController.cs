@@ -11,7 +11,15 @@ namespace Illuminate.Web.Controllers
         //
         // GET: /Content/
 
-        public ActionResult Create()
+        public ActionResult CreateContent()
+        {
+            return View();
+        }
+
+        //
+        // GET: /NewsFeed/
+
+        public ActionResult NewsFeed()
         {
             return View();
         }
