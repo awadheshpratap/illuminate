@@ -89,6 +89,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ContentRepository.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\UserProfileRepository.cs" />
     <Compile Include="Tag.cs">
       <DependentUpon>Content.tt</DependentUpon>
     </Compile>
