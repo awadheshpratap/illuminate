@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html data-ng-app lang="en">
+<html lang="en">
     <head>
         <meta charset="utf-8" />
         <title>@ViewBag.Title</title>
@@ -59,7 +59,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Create <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li> @Html.ActionLink("Webcast", "Create", "Content")</li>
+                <li> @Html.ActionLink("Webcast", "CreateContent", "Content")</li>
               </ul>
             </li>
             <li><a href="#about">Users</a></li>
@@ -78,7 +78,7 @@
         <div class="well sidebar-nav-fixed">
             <ul class="nav nav-list">
               <li class="nav-header"></li>
-              <li class="active"><a href="#">News Feed</a></li>
+              <li class="active">@Html.ActionLink("News Feed", "NewsFeed", "Content")</li>
               <li><a href="#">My Activities</a></li>
             </ul>
         </div>

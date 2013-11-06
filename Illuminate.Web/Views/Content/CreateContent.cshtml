@@ -1,6 +1,9 @@
 ﻿@{
     ViewBag.Title = "Create Content";
+    ViewBag.Module = "content";
 }
+<script src="../Scripts/angular.js"></script>
+<script src="../Scripts/application/createcontent.controller.js"></script>
 
 <style type="text/css">
      .sidebar-nav-fixed {
@@ -22,41 +25,47 @@
               <h3 class="panel-title">Your new webcast</h3>
             </div>
             <div class="panel-body">
-                <div data-ng-controller="CreateContentController">
+                <div data-ng-app="content"  data-ng-controller="CreateContentCtrl">
    
                   <label>Area</label>
-                  [ <a href="" ng-click="addArea()">add</a> ]
+                  [ <a href="#">add</a> ]
                   <div>
-                    <select ng-model="area">
+                    <select>
                       <option>Java</option>
                       <option>.net</option>
                       <option>Automation</option>
                       <option>Agile</option>
                     </select>
-                       [ <a href="" ng-click="removeArea(area)">X</a> ]
+                       [ <a href="#">X</a> ]
                     </div> <br />
                     <label>Topic</label>
-                  [ <a href="" ng-click="addTopic()">add</a> ]
+                  [ <a href="#">add</a> ]
                   <div>
-                    <select ng-model="area">
+                    <select>
                       <option>.net Runtime</option>
                       <option>Generics</option>
                       <option>LINQ</option>
                       <option>Task Parallel Library</option>
                     </select>
-                     [ <a href="" ng-click="removeTopic(topic)">X</a> ]
+                     [ <a href="#">X</a> ]
                   </div> <br />
+
+                  <label>Title</label>&nbsp;&nbsp; <label>Author</label><br>
+                    <input type="text" data-ng-model="title" /> 
+                    <input type="text" data-ng-model="author" /> <br /><br />
+
                   <label>Content Description</label><br>
-                  <textarea ng-model="description" required></textarea> <br /> <br /> <!-- TODO: replace br by a proper grid layout-->
-                  <div file-browser>
+                  <textarea data-ng-model="description" required></textarea> <br /> <br /> <!-- TODO: replace br by a proper grid layout-->
+                  <div>
                     <input type="file" name="upload-file">
                   </div>
                    
                   <br><br>
-    
+                    <button data-ng-click="publish()">Publish</button>
+                  <br><br>
                   <hr/>
                   Debug View:
-                  <pre>user={{user | json}}</pre>
+                  <pre>{{content}}</pre>
                 </div>
             </div>
           </div>
