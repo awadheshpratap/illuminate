@@ -1,7 +1,7 @@
-﻿var myApp = angular.module('content',[]);
+﻿var myApp = angular.module('content', []);
+var baseUrl = 'http://localhost:8181';
  
 myApp.controller('CreateContentCtrl', function ($scope, $http) {
-    var baseUrl = 'http://localhost:8081';
 
     $scope.area = "";
     $scope.topic = "";
@@ -16,11 +16,12 @@ myApp.controller('CreateContentCtrl', function ($scope, $http) {
             "Id":-1, 
             "Title": $scope.title,
             "CategoryId": 1,
-            "Description": $scope.description
+            "Description": $scope.description,
+            "Author": $scope.Author
         };
 
         $http({
-            url: baseUrl + '/contribute/content/-1',
+            url: baseUrl + '/contribute/content/null',
             method: "POST",
             data: JSON.stringify($scope.content),
             headers: {'Content-Type': 'application/json'}

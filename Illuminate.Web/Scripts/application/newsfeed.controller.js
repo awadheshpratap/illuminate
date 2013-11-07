@@ -1,7 +1,7 @@
 ﻿var myApp = angular.module('content', []);
+var baseUrl = 'http://localhost:8181';
 
 myApp.controller('NewsFeedCtrl', function ($scope, $http) {
-    var baseUrl = 'http://localhost:8081';
 
     $scope.newsFeed = [];
 
