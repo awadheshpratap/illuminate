@@ -8,7 +8,7 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http) {
     $scope.getNews = function () {
 
         $http({
-            url: baseUrl + '/contribute/content/-1',
+            url: baseUrl + '/consume/content/',
             method: "GET",
         }).success(function (data, status, headers, config) {
             $scope.newsFeed = data;

@@ -227,7 +227,11 @@
     <Content Include="css\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="css\themes\bootstrap-theme.css" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Img\glyphicons-halflings-white.png" />
     <Content Include="Img\glyphicons-halflings.png" />
