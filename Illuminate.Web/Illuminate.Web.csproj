@@ -163,6 +163,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ContentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,6 +256,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\application\createcontent.controller.js" />
     <Content Include="Scripts\application\newsfeed.controller.js" />
+    <Content Include="Scripts\application\userprofile.controller.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\button.js" />
@@ -299,6 +301,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Content\CreateContent.cshtml" />
     <Content Include="Views\Content\NewsFeed.cshtml" />
+    <Content Include="Views\UserProfile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

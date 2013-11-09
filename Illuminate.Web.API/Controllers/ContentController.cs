@@ -6,7 +6,6 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Illuminate.Model.Repository;
-using System.Web.Mvc;
 
 namespace Illuminate.Web.API.Controllers
 {
@@ -15,6 +14,7 @@ namespace Illuminate.Web.API.Controllers
         private readonly ContentRepository _contentRepository = new ContentRepository();
 
         // GET api/content
+        [HttpGet]
         public IEnumerable<Content> GetAllContents()
         {
             return _contentRepository.Get();
@@ -45,10 +45,19 @@ namespace Illuminate.Web.API.Controllers
         }
 
         // POST contribute/content/{contentId}
+        [HttpPost]
         public HttpResponseMessage PostContent([FromBody] Content content, int? contentId)
         {
-            if (contentId.HasValue == false)
+            if (!contentId.HasValue)
             {
+                // set audit fields 
+                content.CreationDateTime = DateTime.Now;
+                content.UpdateDateTime = DateTime.Now; 
+
+                //TODO: set these as the updating user, once that is available from client
+                content.CreatorRef = "system";
+                content.UpdaterRef = "system";
+
                 _contentRepository.Insert(content);
             }
             else
