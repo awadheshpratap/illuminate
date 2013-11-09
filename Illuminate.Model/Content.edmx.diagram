@@ -7,9 +7,9 @@
       <Diagram DiagramId="f1f7579fd0c945ca9ed2b9511cb3a829" Name="Diagram1" ZoomLevel="88">
         <EntityTypeShape EntityType="IlluminateModel.Content" Width="2.75" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IlluminateModel.Category" Width="1.5" PointX="1.375" PointY="4.875" />
-        <EntityTypeShape EntityType="IlluminateModel.ContentComment" Width="1.5" PointX="4" PointY="0.75" />
+        <EntityTypeShape EntityType="IlluminateModel.ContentComment" Width="1.5" PointX="4" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="IlluminateModel.ContentFollower" Width="1.5" PointX="4" PointY="2.625" />
-        <EntityTypeShape EntityType="IlluminateModel.ContentLike" Width="1.5" PointX="6.125" PointY="0.75" />
+        <EntityTypeShape EntityType="IlluminateModel.ContentLike" PointX="6.125" PointY="0.75" Width="1.5" />
         <EntityTypeShape EntityType="IlluminateModel.ContentTag" Width="1.5" PointX="6.125" PointY="2.625" />
         <EntityTypeShape EntityType="IlluminateModel.Tag" Width="1.5" PointX="6.125" PointY="4.875" />
         <EntityTypeShape EntityType="IlluminateModel.UserProfile" Width="1.5" PointX="4" PointY="4.875" />

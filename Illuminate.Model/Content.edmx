@@ -42,10 +42,11 @@
         </EntityType>
         <EntityType Name="ContentComments">
           <Key>
-            <PropertyRef Name="ContentId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ContentId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="CommentedBy" Type="nchar" MaxLength="10" />
+          <Property Name="CommentedBy" Type="nchar" Nullable="false" MaxLength="10" />
           <Property Name="Comments" Type="nchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="ContentFollowers">
@@ -57,8 +58,9 @@
         </EntityType>
         <EntityType Name="ContentLikes">
           <Key>
-            <PropertyRef Name="contentid" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="contentid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="userid" Type="nchar" Nullable="false" MaxLength="20" />
           <Property Name="likestatus" Type="bit" />
@@ -131,9 +133,11 @@
         <EntityType Name="ContentComment">
           <Key>
             <PropertyRef Name="ContentId" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Type="Int32" Name="ContentId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="CommentedBy" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="CommentedBy" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Type="String" Name="Comments" MaxLength="1000" FixedLength="true" Unicode="true" />
         </EntityType>
         <EntityType Name="ContentFollower">
@@ -146,7 +150,9 @@
         <EntityType Name="ContentLike">
           <Key>
             <PropertyRef Name="contentid" />
+            <PropertyRef Name="Id" />
           </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
           <Property Type="Int32" Name="contentid" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="userid" Nullable="false" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Type="Boolean" Name="likestatus" />
@@ -213,6 +219,7 @@
           <EntitySetMapping Name="ContentComments">
             <EntityTypeMapping TypeName="IlluminateModel.ContentComment">
               <MappingFragment StoreEntitySet="ContentComments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="CommentedBy" ColumnName="CommentedBy" />
                 <ScalarProperty Name="ContentId" ColumnName="ContentId" />
@@ -230,6 +237,7 @@
           <EntitySetMapping Name="ContentLikes">
             <EntityTypeMapping TypeName="IlluminateModel.ContentLike">
               <MappingFragment StoreEntitySet="ContentLikes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="likestatus" ColumnName="likestatus" />
                 <ScalarProperty Name="userid" ColumnName="userid" />
                 <ScalarProperty Name="contentid" ColumnName="contentid" />
