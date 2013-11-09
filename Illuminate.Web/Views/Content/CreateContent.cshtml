@@ -57,7 +57,11 @@
                   <label>Content Description</label><br>
                   <textarea data-ng-model="description" required></textarea> <br /> <br /> <!-- TODO: replace br by a proper grid layout-->
                   <div>
-                    <input type="file" name="upload-file">
+                    @*<input type="file" name="upload-file">*@
+                       <input type="file" file-upload multiple/>
+                      <ul>
+                         <li ng-repeat="file in files">{{file.name}}</li>
+                     </ul>
                   </div>
                    
                   <br><br>

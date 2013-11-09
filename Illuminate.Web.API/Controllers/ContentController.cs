@@ -6,6 +6,17 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Illuminate.Model.Repository;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.Http;
+using Newtonsoft.Json;
+using System.Threading;
 
 namespace Illuminate.Web.API.Controllers
 {
@@ -44,32 +55,59 @@ namespace Illuminate.Web.API.Controllers
             return content;
         }
 
-        // POST contribute/content/{contentId}
         [HttpPost]
-        public HttpResponseMessage PostContent([FromBody] Content content, int? contentId)
+        public async Task<HttpResponseMessage> PostContent()
         {
-            if (!contentId.HasValue)
+            if (!Request.Content.IsMimeMultipartContent())
             {
-                // set audit fields 
-                content.CreationDateTime = DateTime.Now;
-                content.UpdateDateTime = DateTime.Now; 
-
-                //TODO: set these as the updating user, once that is available from client
-                content.CreatorRef = "system";
-                content.UpdaterRef = "system";
-
-                _contentRepository.Insert(content);
-            }
-            else
-            {
-                _contentRepository.Update(content);
+                throw new HttpResponseException(HttpStatusCode.UnsupportedMediaType);
             }
 
+            string uniqueId = Guid.NewGuid().ToString();
+            string root = HttpContext.Current.Server.MapPath("~/App_Data/" + uniqueId);
 
-            var response = Request.CreateResponse<Content>(HttpStatusCode.Created, content);
-            string uri = Url.Link("ConsumeContent", new { contentId = content.Id });
-            response.Headers.Location = new Uri(uri);
-            return response;
+            Directory.CreateDirectory(root);
+            var provider = new MultipartFormDataStreamProvider(root);
+            var result = await Request.Content.ReadAsMultipartAsync(provider);
+            if (result.FormData["model"] == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+           
+
+            if (provider.FileData.Count > 1)
+            {
+                throw new HttpResponseException(HttpStatusCode.BadRequest);
+            }
+
+            string destinationFileUrl = null;
+            //get the files
+            foreach (var file in result.FileData)
+            {
+                FileInfo fileInfo = new FileInfo(file.LocalFileName);
+                string destinationLocalFile = file.Headers.ContentDisposition.FileName.Replace("\"", "");
+                destinationLocalFile = Path.GetFileName(destinationLocalFile);
+                destinationFileUrl = "/App_Data/" + uniqueId + "/" + destinationLocalFile;
+                File.Move(file.LocalFileName, Path.Combine(fileInfo.Directory.ToString(), destinationLocalFile));
+            }
+
+            if (String.IsNullOrEmpty(destinationFileUrl))
+            {
+                Directory.Delete(root, true);
+            }
+
+            //Do something with the json model which is currently a string
+            var model = result.FormData["model"];
+
+            Content content = JsonConvert.DeserializeObject<Content>(model);
+            content.Uri = destinationFileUrl;
+            content.CreationDateTime = DateTime.UtcNow;
+            content.UpdateDateTime = DateTime.UtcNow;
+            content.CreatorRef = Thread.CurrentPrincipal.Identity.Name;
+            content.UpdaterRef = Thread.CurrentPrincipal.Identity.Name;
+            _contentRepository.Insert(content);
+            return Request.CreateResponse(HttpStatusCode.OK, "success!");
         }
     }
 }
