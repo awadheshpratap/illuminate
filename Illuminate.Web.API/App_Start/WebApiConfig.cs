@@ -19,8 +19,17 @@ namespace Illuminate.Web.API
             //consume/content -- List all content
             //consume/content/3 -- details of content with id = 3
             config.Routes.MapHttpRoute(
-                name: "ConsumeContent",
+                name: "ConsumeApi",
                 routeTemplate: "consume/{controller}/{contentId}", defaults: new { contentId = RouteParameter.Optional }
+            );
+
+            //POST collaborate/contentcomment/3 -- new comment on content with id=3
+            //POST collaborate/contentlike/3 -- new like on content with id=3
+            //GET collboarate/contentcomment/3 -- all comments written about content with id=3
+            //GET collboarate/contentlike/3 -- all likes on content with id=3
+            config.Routes.MapHttpRoute(
+                name: "CollaborateApi",
+                routeTemplate: "collaborate/{controller}/{contentId}", defaults: new { }
             );
 
             

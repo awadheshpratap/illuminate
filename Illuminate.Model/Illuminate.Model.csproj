@@ -87,6 +87,8 @@
     </Compile>
     <Compile Include="IdGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ContentCommentRepository.cs" />
+    <Compile Include="Repository\ContentLikeRepository.cs" />
     <Compile Include="Repository\ContentRepository.cs" />
     <Compile Include="Repository\GenericRepository.cs" />
     <Compile Include="Repository\UserProfileRepository.cs" />
