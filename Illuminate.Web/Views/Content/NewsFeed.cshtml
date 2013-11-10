@@ -20,29 +20,39 @@
     <div class="container-fluid">
     <div class="row-fluid row">
        <div class="span10 span-fixed-sidebar">
-         <div class="panel panel-primary">
-            <div class="panel-heading">
-              <h3 class="panel-title">News feed!</h3>
-            </div>
-            <div class="panel-body">
                 <div data-ng-app="content" data-ng-controller="NewsFeedCtrl" data-ng-init="getNews()">
                  <div data-ng-repeat="news in newsFeed">
-                   {{news.Author}} uploaded a new webcast "{{news.Title}}"
-                      Details: {{news.Description}}
-                    <button type="button" class="btn btn-default btn-small">
+                    <div class="media">
+                      <a class="pull-left" href="#">
+                        <img class="media-object" src="..." alt="...">
+                      </a>
+                      <div class="media-body">
+                        <h4 class="media-heading">{{news.Title}}</h4>
+                            {{news.Description}}
+                      </div>
+                    </div>
+                    <button type="button" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
-                    </button>
-                     <div data-ng-repeat="comment in news.comments">
-                         {{comment.CommentedBy}} says {{comment.Comments}}
-                     </div>
+                    </button>   
+                     <div>&nbsp;</div>
+                     <ul class="media-list">
+                         <li class="media" data-ng-repeat="comment in news.comments">
+                             <button type="button" class="btn btn-default btn-sm">
+                                <span class="glyphicon glyphicon-user"></span>
+                             </button>     
+                            <small>
+                               {{comment.CommentedBy}} says {{comment.Comments}}
+                            </small>
+                        </li>
+                    </ul>
+                     
                      <div>
-                        <textarea data-ng-model="userComment" required></textarea>
+                        <textarea cols="50" data-ng-model="news.commentplaceholder" required></textarea>
                          <a href ng-click="commentOnContent(news.Id)">Add Comment</a>
                      </div>
+                     <div>&nbsp;</div>
                  </div>
                 </div>
             </div>
-          </div>
-       </div>
      </div>
     </div>

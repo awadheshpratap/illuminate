@@ -1,12 +1,9 @@
 ﻿var myApp = angular.module('content', []);
 var baseUrl = 'http://localhost:8181';
 
-myApp.controller('NewsFeedCtrl', function ($scope, $http, $q) {
+myApp.controller('NewsFeedCtrl', function ($scope, $http, $q, $location) {
 
     $scope.newsFeed = [];
-
-    //TODO: move commenting logic to a new controller contentcomment.controller.js
-    $scope.userComment = "";
 
     $scope.getNews = function () {
 
@@ -26,6 +23,7 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q) {
                     
                     // set in content
                     latestContent[index].comments = commentOnIt;
+                    latestContent[index].commentplaceholder = "";
                 });
             });
 
@@ -44,12 +42,16 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q) {
         });
     };
 
-    $scope.commentOnContent = function(contentId) {
+    $scope.commentOnContent = function (contentId) {
+
+        var item = Enumerable.From($scope.newsFeed).
+                       Where("x => x.Id == " + contentId).First();
+
         var comment = {
             "Id": -1,
             "ContentId": contentId,
             "CommentedBy": "loguser", //TODO:
-            "Comments": $scope.userComment
+            "Comments": item.commentplaceholder
         };
 
         $http({
@@ -58,7 +60,7 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q) {
             data: JSON.stringify(comment),
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
-            $scope.getNews(); // hack : to be replaced by a way of partial reloading
+            $location.reload(); // hack, doesn't work ? partial refresh
         }).error(function (data, status, headers, config) {
             $scope.status = status + ' ' + headers;
         });
