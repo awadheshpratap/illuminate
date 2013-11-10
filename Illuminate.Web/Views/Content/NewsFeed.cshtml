@@ -27,12 +27,14 @@
             <div class="panel-body">
                 <div data-ng-app="content" data-ng-controller="NewsFeedCtrl" data-ng-init="getNews()">
                  <div data-ng-repeat="news in newsFeed">
-                   <pre>{{news.Author}} uploaded a new webcast "{{news.Title}}"
+                   {{news.Author}} uploaded a new webcast "{{news.Title}}"
                       Details: {{news.Description}}
                     <button type="button" class="btn btn-default btn-small">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
                     </button>
-                    </pre>
+                     <div data-ng-repeat="comment in news.comments">
+                         {{comment.CommentedBy}} says {{comment.Comments}}
+                     </div>
                  </div>
                 </div>
             </div>

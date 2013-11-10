@@ -11,7 +11,12 @@ namespace Illuminate.Web.API.Controllers
 {
     public class ContentLikeController : ApiController
     {
-        private ContentLikeRepository _contentLikesRepository;
+        private ContentLikeRepository _contentLikesRepository = new ContentLikeRepository();
+
+        public IEnumerable<ContentLike> GetAllLikes()
+        {
+            return _contentLikesRepository.Get();
+        }
 
         // GET api/contentlike/{contentid}
         public IEnumerable<ContentLike> GetAllLikes(int contentId)
@@ -20,9 +25,17 @@ namespace Illuminate.Web.API.Controllers
                 GetWithRawSql("select * from contentlike where contentid={0}", contentId);
         }
 
-        // POST api/contentlike
-        public void Post([FromBody]ContentLike value)
+        // POST api/contentlike/{contenttid}
+        public void Post([FromBody]ContentLike like)
         {
+            if (like.Id > 0)
+            {
+                _contentLikesRepository.Insert(like);
+            }
+            else
+            {
+                _contentLikesRepository.Update(like);
+            }
         }
 
         // DELETE api/contentlike/5

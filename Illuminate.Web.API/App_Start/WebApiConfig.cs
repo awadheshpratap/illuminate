@@ -29,7 +29,7 @@ namespace Illuminate.Web.API
             //GET collboarate/contentlike/3 -- all likes on content with id=3
             config.Routes.MapHttpRoute(
                 name: "CollaborateApi",
-                routeTemplate: "collaborate/{controller}/{contentId}", defaults: new { }
+                routeTemplate: "collaborate/{controller}/{contentId}", defaults: new { contentId = RouteParameter.Optional }
             );
 
             

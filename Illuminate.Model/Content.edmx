@@ -132,7 +132,6 @@
         </EntityType>
         <EntityType Name="ContentComment">
           <Key>
-            <PropertyRef Name="ContentId" />
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
@@ -149,7 +148,6 @@
         </EntityType>
         <EntityType Name="ContentLike">
           <Key>
-            <PropertyRef Name="contentid" />
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" />
