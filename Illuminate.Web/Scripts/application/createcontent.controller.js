@@ -21,15 +21,15 @@ myApp.directive('fileUpload', function () {
 
 myApp.controller('CreateContentCtrl', function ($scope, $http) {
 
-    $scope.area = "";
-    $scope.topic = "";
-    $scope.author = "";
+    $scope.categoryId = "";
     $scope.title = "";
+    $scope.author = "";
     $scope.description = "";
     $scope.fileName = "";
 
     $scope.files = [];
 
+    $scope.validCategories = [];
 
     //listen for the file selected event
     $scope.$on("fileSelected", function (event, args) {
@@ -39,18 +39,28 @@ myApp.controller('CreateContentCtrl', function ($scope, $http) {
         });
     });
 
+    $scope.getChannels = function () {
+
+        $http({
+            url: baseUrl + '/contribute/category/',
+            method: "GET",
+        }).success(function (data, status, headers, config) {
+            $scope.validCategories = data;
+        }).error(function (data, status, headers, config) {
+            $scope.status += status + ' ' + headers;
+        });
+
+    }
 
     $scope.publish = function () {
 
         $scope.content = {
             "Id":-1, 
             "Title": $scope.title,
-            "CategoryId": 1,
+            "CategoryId": $scope.categoryId,
+            "Author": $scope.Author,
             "Description": $scope.description,
-            "Author": $scope.Author
         };
-
-     
 
         $http({
             method: 'POST',

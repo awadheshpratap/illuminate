@@ -9,35 +9,43 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q, $location) {
 
         var latestContent = [];
         
-        var promise1 = getContent();
-        promise1.then(function (content) {
-            latestContent = content;
+        var promise1 = getChannels();
+        promise1.then(function (categories) {
 
-            var promise2 = getComments();
-            promise2.then(function(comments) {
-                // optimise if needed : use javascript for instead of jquery.each since it is slower in comparision
-                $.each(latestContent, function (index, item) {
-                    // get comments
-                    var commentOnIt = Enumerable.From(comments).
-                       Where("x => x.ContentId == " + item.Id).ToArray();
-                    
-                    // set in content
-                    latestContent[index].comments = commentOnIt;
-                    latestContent[index].commentplaceholder = "";
-                });
-            });
+            var promise2 = getContent();
+            promise2.then(function (content) {
+                latestContent = content;
 
-            var promise3 = getLikes();
-            promise3.then(function (likes) {
-                $.each(latestContent, function (index, item) {
-                    // get likes
-                    var likesOnIt = Enumerable.From(likes).
-                        Where("x => x.ContentId == " + item.Id);
-                    // set in content
-                    latestContent[index].likes = likesOnIt;
+                var promise3 = getComments();
+                promise3.then(function (comments) {
+                    // optimise if needed : use javascript for instead of jquery.each since it is slower in comparision
+                    $.each(latestContent, function (index, item) {
+                        // expand category
+                        latestContent[index].Channel = Enumerable.From(categories).
+                           Where("x => x.CategoryId == " + latestContent[index].CategoryId).First().Name;
+
+                        // get comments
+                        var commentOnIt = Enumerable.From(comments).
+                           Where("x => x.ContentId == " + item.Id).ToArray();
+
+                        // set in content
+                        latestContent[index].comments = commentOnIt;
+                        latestContent[index].commentplaceholder = "";
+                    });
                 });
 
-                $scope.newsFeed = latestContent;
+                var promise4 = getLikes();
+                promise4.then(function (likes) {
+                    $.each(latestContent, function (index, item) {
+                        // get likes
+                        var likesOnIt = Enumerable.From(likes).
+                            Where("x => x.ContentId == " + item.Id);
+                        // set in content
+                        latestContent[index].likes = likesOnIt;
+                    });
+
+                    $scope.newsFeed = latestContent;
+                });
             });
         });
     };
@@ -50,7 +58,7 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q, $location) {
         var comment = {
             "Id": -1,
             "ContentId": contentId,
-            "CommentedBy": "loguser", //TODO:
+            "CommentedBy": "loggeduser", //TODO:
             "Comments": item.commentplaceholder
         };
 
@@ -81,6 +89,24 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q, $location) {
         }).error(function (data, status, headers, config) {
             $scope.status = status + ' ' + headers;
         });
+
+    }
+
+    getChannels = function () {
+
+        var deferred = $q.defer();
+
+        $http({
+            url: baseUrl + '/contribute/category/',
+            method: "GET",
+        }).success(function (data, status, headers, config) {
+            deferred.resolve(data);
+        }).error(function (data, status, headers, config) {
+            $scope.status += status + ' ' + headers;
+            deferred.reject(null);
+        });
+
+        return deferred.promise;
 
     }
 

@@ -20,13 +20,13 @@
     <div class="container-fluid">
     <div class="row-fluid row">
        <div class="span10 span-fixed-sidebar">
-                <div data-ng-app="content"  data-ng-controller="CreateContentCtrl">
+                <div data-ng-app="content"  data-ng-controller="CreateContentCtrl" data-ng-init="getChannels()">
                   <form role="form">
                      <fieldset>
                        <legend>New content</legend>
                        <div class="form-group">
                            <label>Channel</label>
-                           <select data-ng-model="" data-ng-options="" required>
+                           <select data-ng-model="categoryId" data-ng-options="c.CategoryId as c.Name for c in validCategories" required>
                        </select>
                        </div>
                        <div class="form-group">
@@ -50,7 +50,7 @@
                          <li data-ng-repeat="file in files">{{file.name}}</li>
                         </ul>
                         </div>
-                       <button type="submit" class="btn btn-primary">Publish</button>
+                       <button data-ng-click="publish()" class="btn btn-primary">Publish</button>
                       </fieldset>
                  </form>
 
