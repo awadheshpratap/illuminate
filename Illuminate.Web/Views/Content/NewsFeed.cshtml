@@ -35,6 +35,10 @@
                      <div data-ng-repeat="comment in news.comments">
                          {{comment.CommentedBy}} says {{comment.Comments}}
                      </div>
+                     <div>
+                        <textarea data-ng-model="userComment" required></textarea>
+                         <a href ng-click="commentOnContent(news.Id)">Add Comment</a>
+                     </div>
                  </div>
                 </div>
             </div>

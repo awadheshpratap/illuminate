@@ -5,6 +5,9 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q) {
 
     $scope.newsFeed = [];
 
+    //TODO: move commenting logic to a new controller contentcomment.controller.js
+    $scope.userComment = "";
+
     $scope.getNews = function () {
 
         var latestContent = [];
@@ -42,14 +45,20 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q) {
     };
 
     $scope.commentOnContent = function(contentId) {
+        var comment = {
+            "Id": -1,
+            "ContentId": contentId,
+            "CommentedBy": "loguser", //TODO:
+            "Comments": $scope.userComment
+        };
 
         $http({
             url: baseUrl + '/collaborate/contentcomment/' + contentId,
             method: "POST",
-            data: JSON.stringify($scope.comment),
+            data: JSON.stringify(comment),
             headers: {'Content-Type': 'application/json'}
         }).success(function (data, status, headers, config) {
-            
+            $scope.getNews(); // hack : to be replaced by a way of partial reloading
         }).error(function (data, status, headers, config) {
             $scope.status = status + ' ' + headers;
         });
