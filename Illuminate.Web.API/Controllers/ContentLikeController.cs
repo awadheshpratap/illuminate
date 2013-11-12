@@ -28,7 +28,7 @@ namespace Illuminate.Web.API.Controllers
         // POST api/contentlike/{contenttid}
         public void Post([FromBody]ContentLike like)
         {
-            if (like.Id > 0)
+            if (like.Id < 0)
             {
                 _contentLikesRepository.Insert(like);
             }

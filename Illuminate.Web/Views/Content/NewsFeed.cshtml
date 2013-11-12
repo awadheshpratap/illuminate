@@ -28,11 +28,13 @@
                       </a>
                       <div class="media-body">
                         <h4 class="media-heading">{{news.Title}}</h4>
+                        <small> Posted by {{news.Author}} in channel {{news.Channel}} </small>
+                          <br />
                             {{news.Description}}
-                          Posted by {{news.Author}} in channel {{news.Channel}}
                       </div>
                     </div>
-                    <button type="button" class="btn btn-default btn-xs">
+                    <small> {{news.likesCount}} people like this </small>
+                    <button type="button" data-ng-click="likeContent(news.Id)" class="btn btn-default btn-xs">
                         <span class="glyphicon glyphicon-thumbs-up"></span>
                     </button>   
                      <div>&nbsp;</div>
@@ -42,7 +44,7 @@
                                 <span class="glyphicon glyphicon-user"></span>
                              </button>     
                             <small>
-                               {{comment.CommentedBy}} says {{comment.Comments}}
+                               {{comment.Comments}}
                             </small>
                         </li>
                     </ul>

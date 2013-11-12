@@ -39,9 +39,9 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q, $location) {
                     $.each(latestContent, function (index, item) {
                         // get likes
                         var likesOnIt = Enumerable.From(likes).
-                            Where("x => x.ContentId == " + item.Id);
+                            Where("x => x.contentid == " + item.Id).ToArray();
                         // set in content
-                        latestContent[index].likes = likesOnIt;
+                        latestContent[index].likesCount = likesOnIt.length;
                     });
 
                     $scope.newsFeed = latestContent;
@@ -77,10 +77,17 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q, $location) {
 
     $scope.likeContent = function(contentId) {
 
+        var like = {
+            "Id": -1,
+            "contentid": contentId,
+            "userid": "loggeduser", //TODO:
+            "likestatus": true
+        };
+
         $http( {
-            url: baseUrl + '/collaborate/contentlike' + contentId,
+            url: baseUrl + '/collaborate/contentlike/' + contentId,
             method: 'POST',
-            data : JSON.stringify($scope.like),
+            data : JSON.stringify(like),
             headers: {'Content-Type': 'application/json'}
 
         }).success(function (data, status, headers, config) {
