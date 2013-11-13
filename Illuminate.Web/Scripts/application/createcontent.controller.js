@@ -92,6 +92,6 @@ myApp.controller('CreateContentCtrl', function ($scope, $http) {
         }).error(function (data, status, headers, config) {
             $scope.status = status + ' ' + headers;
         });
-    }; 
+    };
 
 });

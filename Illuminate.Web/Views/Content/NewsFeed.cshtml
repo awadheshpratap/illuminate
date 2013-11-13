@@ -26,17 +26,19 @@
                       <a class="pull-left" href="#">
                         <img class="media-object" src="..." alt="...">
                       </a>
-                      <div class="media-body">
+                      <div class="media-body" style="background-color:#F0F0F5">
                         <h4 class="media-heading">{{news.Title}}</h4>
                         <small> Posted by {{news.Author}} in channel {{news.Channel}} </small>
                           <br />
                             {{news.Description}}
+                          <br />
+                          <small> {{news.likesCount}} people like this </small>
+                          <button type="button" data-ng-click="likeContent(news.Id)" class="btn btn-default btn-xs">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                          </button>   
                       </div>
                     </div>
-                    <small> {{news.likesCount}} people like this </small>
-                    <button type="button" data-ng-click="likeContent(news.Id)" class="btn btn-default btn-xs">
-                        <span class="glyphicon glyphicon-thumbs-up"></span>
-                    </button>   
+                     
                      <div>&nbsp;</div>
                      <ul class="media-list">
                          <li class="media" data-ng-repeat="comment in news.comments">
@@ -50,7 +52,7 @@
                     </ul>
                      
                      <div>
-                        <textarea cols="50" data-ng-model="news.commentplaceholder" required></textarea>
+                        <textarea rows="2" cols="50" data-ng-model="news.commentplaceholder" required></textarea>
                          <a href ng-click="commentOnContent(news.Id)">Add Comment</a>
                      </div>
                      <div>&nbsp;</div>
