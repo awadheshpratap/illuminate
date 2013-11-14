@@ -32,6 +32,10 @@ namespace Illuminate.Web.API
                 routeTemplate: "collaborate/{controller}/{contentId}", defaults: new { contentId = RouteParameter.Optional }
             );
 
+            config.Routes.MapHttpRoute(
+                name: "DefaultApi",
+                routeTemplate: "api/{controller}/{id}", defaults: new { id = RouteParameter.Optional }
+            );
             
             //Ignoring the XML serialization, to allow the Chrome to use the JSON format by default
             var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
