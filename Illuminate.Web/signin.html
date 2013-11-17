@@ -7,15 +7,17 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/ico/favicon.png">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>Illuminate Signin</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="../css/signin.css" rel="stylesheet">
-    <script src="../Scripts/angular.js"></script>
-    <script src="../Scripts/application/signin.controller.js"></script>
+    <link href="css/signin.css" rel="stylesheet">
+    <script src="Scripts/jquery-1.7.1.js"></script>
+    <script src="Scripts/angular.js"></script>
+    <script src="Scripts/angular-ui-router.js"></script>  
+    <script src="Scripts/application/signin.controller.js"></script>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="../../assets/js/html5shiv.js"></script>
@@ -29,7 +31,7 @@
 
       <form class="form-signin">
         <h2 class="form-signin-heading">Illuminate</h2>
-        <input type="text" class="form-control" placeholder="Username" data-ng-model="username" autofocus>
+        <input type="text" class="form-control" placeholder="Username" data-ng-model="userid" autofocus>
         <input type="password" class="form-control" placeholder="Password" data-ng-model="password">
         <label class="checkbox">
           <input type="checkbox" value="remember-me"> Remember me

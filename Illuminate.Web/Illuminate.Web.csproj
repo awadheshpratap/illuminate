@@ -225,9 +225,11 @@
     <Content Include="Scripts\angular-sanitize.js" />
     <Content Include="Scripts\angular-sanitize.min.js" />
     <Content Include="Scripts\angular-scenario.js" />
+    <Content Include="Scripts\angular-ui-router.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\application\createcontent.controller.js" />
+    <Content Include="Scripts\application\app.js" />
     <Content Include="Scripts\application\newsfeed.controller.js" />
     <Content Include="Scripts\application\signin.controller.js" />
     <Content Include="Scripts\application\userprofile.controller.js" />
@@ -258,7 +260,7 @@
     <Content Include="Scripts\tab.js" />
     <Content Include="Scripts\tooltip.js" />
     <Content Include="Scripts\transition.js" />
-    <Content Include="Views\Home\signin.html" />
+    <Content Include="signin.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

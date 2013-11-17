@@ -18,6 +18,12 @@ namespace Illuminate.Web
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+
+            routes.MapRoute(
+                name: "Main",
+                url: "{controller}/{action}/{userid}",
+                defaults: new { controller = "Home", action = "Index" }
+            );
         }
     }
 }

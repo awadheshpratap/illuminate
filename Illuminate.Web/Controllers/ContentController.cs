@@ -11,16 +11,18 @@ namespace Illuminate.Web.Controllers
         //
         // GET: /Content/
 
-        public ActionResult CreateContent()
+        public ActionResult CreateContent(string userid)
         {
+            ViewBag.LoggedInUser = userid;
             return View();
         }
 
         //
         // GET: /NewsFeed/
 
-        public ActionResult NewsFeed()
+        public ActionResult NewsFeed(string userid)
         {
+            ViewBag.LoggedInUser = userid;
             return View();
         }
 

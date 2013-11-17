@@ -21,21 +21,15 @@ namespace Illuminate.Web.API.Controllers
         }
 
         // GET api/userprofile/<username>
-        public UserProfile GetUserDeatailsById(string userid,string password)
+        public UserProfile GetUserDeatailsById(string id)
         {
-            if (userid == null)
+            if (id == null)
             {
                 throw new HttpResponseException(HttpStatusCode.BadRequest);
             }
 
-            var userProfileInfo = _userProfileRepository.GetByID(userid);
-            if (userProfileInfo != null)
-            {
-                if (!Authenticate(userid, password))
-                    return null;
-                return userProfileInfo;
-            }
-            return null;
+            var userProfileInfo = _userProfileRepository.GetByID(id);
+            return userProfileInfo;
         }
 
 

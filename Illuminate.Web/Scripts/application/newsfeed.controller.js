@@ -4,6 +4,9 @@ var baseUrl = 'http://localhost:8181';
 myApp.controller('NewsFeedCtrl', function ($scope, $http, $q, $location) {
 
     $scope.newsFeed = [];
+    $scope.login = {
+        userId: ""
+    };
 
     $scope.getNews = function () {
 
@@ -58,7 +61,7 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q, $location) {
         var comment = {
             "Id": -1,
             "ContentId": contentId,
-            "CommentedBy": "loggeduser", //TODO:
+            "CommentedBy": $scope.login.userId,
             "Comments": item.commentplaceholder
         };
 
@@ -80,7 +83,7 @@ myApp.controller('NewsFeedCtrl', function ($scope, $http, $q, $location) {
         var like = {
             "Id": -1,
             "contentid": contentId,
-            "userid": "loggeduser", //TODO:
+            "userid": $scope.login.userId,
             "likestatus": true
         };
 

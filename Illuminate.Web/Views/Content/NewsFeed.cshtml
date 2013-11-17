@@ -55,6 +55,7 @@
                      <div>
                         <textarea rows="2" cols="50" data-ng-model="news.commentplaceholder" required></textarea>
                          <a href ng-click="commentOnContent(news.Id)">Add Comment</a>
+                         <input type="hidden" data-ng-model="login.userId" data-ng-init="login.userId = @ViewBag.LoggedInUser" />
                      </div>
                      <div>&nbsp;</div>
                  </div>

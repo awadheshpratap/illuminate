@@ -8,9 +8,9 @@ namespace Illuminate.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string userid)
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            ViewBag.LoggedInUser = userid;
 
             return View();
         }
